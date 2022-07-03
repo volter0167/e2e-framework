@@ -55,22 +55,43 @@ Then(/^Verify sentence matches (.*)$/, async function(expectedValue) {
 */
 
 Given(/^A web page is opened$/, async function() {
-    await browser.url('')
+    await browser.url('/dropdown')
     await browser.setTimeout({implicit: 15000, pageLoad: 10000})
     await browser.maximizeWindow()
-    await browser.pause(2000)
 })
 
 When(/^Perform WebInteractions$/, async function() {
-    await browser.url('https://www.ebay.com/')
-    await browser.maximizeWindow()
-    const section = await $('(//h2)[9]')
-    await section.scrollIntoView()
-    await browser.pause(2000)
-    await section.click()
+    // await browser.url('https://www.ebay.com/')
+    // await browser.maximizeWindow()
+    // const section = await $('(//h2)[9]')
+    // await section.scrollIntoView()
+    // await browser.pause(2000)
+    // await section.click()
 
-    const searchBar = await $('input[type="text"]')
-    await searchBar.click()
-    await browser.keys(["1", "2", "3"])
-    await browser.pause(2000)
+    // const searchBar = await $('input[type="text"]')
+    // await searchBar.click()
+    // await browser.keys(["1", "2", "3"])
+    // await browser.pause(2000)
+    /* Assert the default selected option */
+        const defOptionEl = await $('#dropdown option[selected=selected]')
+        const defOptionValue = await defOptionEl.getText()
+        chai.expect(defOptionValue).to.equal('Please select an option')
+
+    /* Select by attribute, text, index */
+        // const ddEl = await $('#dropdown ')
+        // await ddEl.selectByAttribute('value', '2')
+        // await ddEl.selectByIndex(1)
+        // await ddEl.selectByVisibleText('Option 1')
+        // await browser.pause(2000)
+
+    /* Get List of Options */
+        const optionsArr = await $$('#dropdown option')
+        const arr = [];
+        let i = 0;
+        for(let option of optionsArr) {
+            const text = await option.getText()
+            arr.push(text)
+            console.log(`Text #${i++}: ${text}`)
+        }
+        console.log(`<< arr: ${arr}`)
 })
