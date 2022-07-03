@@ -55,7 +55,7 @@ Then(/^Verify sentence matches (.*)$/, async function(expectedValue) {
 */
 
 Given(/^A web page is opened$/, async function() {
-    await browser.url('/windows')
+    await browser.url('/iframe')
     await browser.setTimeout({implicit: 5000, pageLoad: 2000})
     await browser.maximizeWindow()
 })
@@ -130,33 +130,80 @@ When(/^Perform WebInteractions$/, async function() {
 
     /* Windows (tabs) */
         /* Open different windows */
-            await $('//div[@class="example"]/a').click()
-            await $('//div[@id="page-footer"]//a').click()
-            const currTitleWindow = await browser.getTitle()
-            const initialWindowId = await browser.getWindowHandle()
-            console.log(`>> currTitleWindow: ${currTitleWindow}`)
+            // await $('//div[@class="example"]/a').click()
+            // await $('//div[@id="page-footer"]//a').click()
+            // const currTitleWindow = await browser.getTitle()
+            // const initialWindowId = await browser.getWindowHandle()
+            // console.log(`>> currTitleWindow: ${currTitleWindow}`)
 
         /* Switch to another window */
-            const arrWindows = await browser.getWindowHandles()
-            let i = arrWindows.length - 1
-            while(i >= 0) {
-                console.log(`>> windowId: ${arrWindows[i]}`)
-                await browser.switchToWindow(arrWindows[i])
-                const winTitle = await browser.getTitle()
-                i--
-                if(winTitle === 'Elemental Selenium: Receive a Free, Weekly Tip on Using Selenium like a Pro') {
-                    break
-                } 
-            }
-            const mainHeader = await $('<h1>').getText()
-            console.log(`>> titleSite: ${mainHeader}`) 
+            // const arrWindows = await browser.getWindowHandles()
+            // let i = arrWindows.length - 1
+            // while(i >= 0) {
+            //     console.log(`>> windowId: ${arrWindows[i]}`)
+            //     await browser.switchToWindow(arrWindows[i])
+            //     const winTitle = await browser.getTitle()
+            //     i--
+            //     if(winTitle === 'Elemental Selenium: Receive a Free, Weekly Tip on Using Selenium like a Pro') {
+            //         break
+            //     } 
+            // }
+            // const mainHeader = await $('<h1>').getText()
+            // console.log(`>> titleSite: ${mainHeader}`) 
         /* Switch back to the initial window*/
-            await browser.switchToWindow(initialWindowId)
-            const parentWindowHeader = await $('//div[@class="example"]/h3').getText()
-            console.log(`>> parentWindowHeader: ${parentWindowHeader}`)
+            // await browser.switchToWindow(initialWindowId)
+            // const parentWindowHeader = await $('//div[@class="example"]/h3').getText()
+            // console.log(`>> parentWindowHeader: ${parentWindowHeader}`)
 
         // Window Methods:
             // browser.getWindowHandles()
             // browser.getWindowHandle()
             // browser.switchToWindow(windowID)
+
+        /* Alerts */
+        /* Accept the default alert */
+            // await $('//div[@class="example"]//button[@onclick="jsAlert()"]').click()
+            // if(await browser.isAlertOpen()) {
+            //     await browser.acceptAlert()
+            // }
+        /* Dismiss the alert */
+            // await $('//div[@class="example"]//button[@onclick="jsConfirm()"]').click()
+            // if(await browser.isAlertOpen()) {
+            //     await browser.dismissAlert()
+            // }
+        /* Retreive alert message and Send message in the alert pop up */
+            // await $('//div[@class="example"]//button[@onclick="jsPrompt()"]').click()
+            // if(await browser.isAlertOpen()) {
+            //     const alertText = await browser.getAlertText()
+            //     console.log(`>> alertText: ${alertText}`)
+            //     await browser.sendAlertText('checking value 112')
+            //     await browser.acceptAlert()
+            // }
+
+        /* Alert methods:
+            - isAlertOpen()
+            - acceptAlert()
+            - dismissAlert()
+            - getAlertText()
+            - sendAlertText()
+        */
+
+        /* File uploading */
+            // await $('#file-upload').addValue(`${process.cwd()}/data/uploading/dummy.txt`)
+            // await $('#file-submit').click()
+            // await browser.pause(3000)
+
+        /* Frames */
+        /* Typing into the frame */
+            // const frameObj = await $('#mce_0_ifr')
+            // await browser.switchToFrame(frameObj)
+            // await $('#tinymce').setValue('testing purposes for iframes...')
+            // const content = await $('body p').getText()
+            // console.log(`>> content: ${content}`) 
+            
+            // await browser.switchToParentFrame()
+            // const headerParent = await $('<h3>').getText()
+            // console.log(`>> headerParent: ${headerParent}`)
+
+            // await browser.pause(2000)
 })
