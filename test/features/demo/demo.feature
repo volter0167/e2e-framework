@@ -1,6 +1,6 @@
 Feature: Demo Feature
 
-    @demo
+
     Scenario Outline: Run first demo feature
         Given Google page is opened
         When Search by <SearchItem>
@@ -11,7 +11,7 @@ Feature: Demo Feature
             | TestID     | SearchItem | ExpectedURL                    |
             | Demo_TC001 | WDIO       | https://webdriver.io/          |
             | Demo_TC002 | vs code    | https://code.visualstudio.com/ |
-    @sys-requirements
+
     Scenario Outline: Check system requirements
         Given Wdio site is opened on the home page
         When Click on the Get Started btn

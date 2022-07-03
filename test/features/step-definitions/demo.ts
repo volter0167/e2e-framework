@@ -24,7 +24,9 @@ Then(/^The url matches the (.*)$/, async function(expectedUrl) {
     chai.expect(url).to.equal(expectedUrl)
 })
 
-//Second test case
+/*
+    System Requirements
+*/
 
 Given(/^Wdio site is opened on the home page$/, async function() {
     await browser.url('https://webdriver.io/')
@@ -46,4 +48,29 @@ Then(/^Verify sentence matches (.*)$/, async function(expectedValue) {
     console.log(`>> expectedValue: ${expectedValue}`)
     const requirement = await (await $('//div[@class="theme-doc-markdown markdown"]/p[15]')).getText()
     chai.expect(requirement).to.include(expectedValue)
+})
+
+/*
+    WebInteractions
+*/
+
+Given(/^A web page is opened$/, async function() {
+    await browser.url('')
+    await browser.setTimeout({implicit: 15000, pageLoad: 10000})
+    await browser.maximizeWindow()
+    await browser.pause(2000)
+})
+
+When(/^Perform WebInteractions$/, async function() {
+    await browser.url('https://www.ebay.com/')
+    await browser.maximizeWindow()
+    const section = await $('(//h2)[9]')
+    await section.scrollIntoView()
+    await browser.pause(2000)
+    await section.click()
+
+    const searchBar = await $('input[type="text"]')
+    await searchBar.click()
+    await browser.keys(["1", "2", "3"])
+    await browser.pause(2000)
 })
