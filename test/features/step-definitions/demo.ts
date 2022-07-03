@@ -55,7 +55,7 @@ Then(/^Verify sentence matches (.*)$/, async function(expectedValue) {
 */
 
 Given(/^A web page is opened$/, async function() {
-    await browser.url('/dropdown')
+    await browser.url('/checkboxes')
     await browser.setTimeout({implicit: 15000, pageLoad: 10000})
     await browser.maximizeWindow()
 })
@@ -73,9 +73,9 @@ When(/^Perform WebInteractions$/, async function() {
     // await browser.keys(["1", "2", "3"])
     // await browser.pause(2000)
     /* Assert the default selected option */
-        const defOptionEl = await $('#dropdown option[selected=selected]')
-        const defOptionValue = await defOptionEl.getText()
-        chai.expect(defOptionValue).to.equal('Please select an option')
+        // const defOptionEl = await $('#dropdown option[selected=selected]')
+        // const defOptionValue = await defOptionEl.getText()
+        // chai.expect(defOptionValue).to.equal('Please select an option')
 
     /* Select by attribute, text, index */
         // const ddEl = await $('#dropdown ')
@@ -85,13 +85,46 @@ When(/^Perform WebInteractions$/, async function() {
         // await browser.pause(2000)
 
     /* Get List of Options */
-        const optionsArr = await $$('#dropdown option')
-        const arr = [];
-        let i = 0;
-        for(let option of optionsArr) {
-            const text = await option.getText()
-            arr.push(text)
-            console.log(`Text #${i++}: ${text}`)
-        }
-        console.log(`<< arr: ${arr}`)
+        // const optionsArr = await $$('#dropdown option')
+        // const arr = [];
+        // let i = 0;
+        // for(let option of optionsArr) {
+        //     const text = await option.getText()
+        //     arr.push(text)
+        //     console.log(`Text #${i++}: ${text}`)
+        // }
+        // console.log(`<< arr: ${arr}`)
+    
+    /* Checkboxes */
+    /* Assert checkbox is selected */
+        // const selectedEl = await $('//form[@id="checkboxes"]/input[2]')
+        // const isChecked = await selectedEl.isSelected()
+        // chai.expect(isChecked).to.be.true
+
+    /* Unselect selected checkbox */
+        // const selectedEl = await $('//form[@id="checkboxes"]/input[2]')
+        // if(await selectedEl.isSelected()) {
+        //     await selectedEl.click()
+        // }
+        // const isChecked = await selectedEl.isSelected()
+        // chai.expect(isChecked).to.be.false
+    /* Select checkbox */
+        // const checkbox = await $('//form[@id="checkboxes"]/input[1]')
+        // if(!await checkbox.isSelected()) {
+        //     await checkbox.click()
+        // }
+        // const isChecked = await checkbox.isSelected()
+        // chai.expect(isChecked).to.be.true
+
+    /* Select all checkboxes */
+        // const checkboxEl = await $('//form[@id="checkboxes"]/input[2]')
+        // await checkboxEl.click()
+        // await browser.pause(2000)
+        // const checkboxesArr = await $$('//form[@id="checkboxes"]/input')
+        // for(let checkbox of checkboxesArr) {
+        //     if(!await checkbox.isSelected()) {
+        //         await checkbox.click()
+        //     }
+        // }
+        // await browser.pause(2000)
 })
