@@ -55,7 +55,7 @@ Then(/^Verify sentence matches (.*)$/, async function(expectedValue) {
 */
 
 Given(/^A web page is opened$/, async function() {
-    await browser.url('/iframe')
+    await browser.url('https://the-internet.herokuapp.com/tables')
     await browser.setTimeout({implicit: 5000, pageLoad: 2000})
     await browser.maximizeWindow()
 })
@@ -194,10 +194,15 @@ When(/^Perform WebInteractions$/, async function() {
             // await browser.pause(3000)
 
         /* Frames */
-        /* Typing into the frame */
+        /* Typing into the frame and keys methods*/
             // const frameObj = await $('#mce_0_ifr')
             // await browser.switchToFrame(frameObj)
-            // await $('#tinymce').setValue('testing purposes for iframes...')
+            // await $('#tinymce').click()
+            // await browser.keys(['Control', 'a'])
+            // await browser.pause(2000)
+            // await browser.keys('Backspace')
+            // await browser.pause(1000)
+            // await $('#tinymce').addValue('testing purposes for iframes...')
             // const content = await $('body p').getText()
             // console.log(`>> content: ${content}`) 
             
@@ -206,4 +211,65 @@ When(/^Perform WebInteractions$/, async function() {
             // console.log(`>> headerParent: ${headerParent}`)
 
             // await browser.pause(2000)
+
+        /* Basic Scrolling */
+            // await $('span*=International top sellers').scrollIntoView()
+            // await browser.pause(5000)
+        /* Table */
+            /* Retreive number of columns and rows */ 
+                // const rowsCount = await $$('//table[@id="table1"]/tbody/tr').length
+                // console.log(`>> rowsCount: ${rowsCount}`)
+                // const colsCount = await $$('//table[@id="table1"]/thead/tr/th').length
+                // console.log(`>> colsCount: ${colsCount}`)
+            /* Represent the table data in the object array */
+                // const arrTableData = [];
+                // for(let i = 1; i <= rowsCount; i++) {
+                //     const obj = {}
+                //     for(let j = 1; j < colsCount; j++) {
+                //         const keysArr = ['placeholder', 'lastName', 'firstName', 'email', 'due', 'web']
+                //         const cellEl = await $(`//table[@id='table1']/tbody/tr[${i}]/td[${j}]`)
+                //         const cellContent = await cellEl.getText()
+                //         obj[keysArr[j]] = cellContent 
+                //     }
+                //         arrTableData.push(obj)
+                // }
+                // console.log(`>> arrTableData: ${JSON.stringify(arrTableData, null, 2)}`)
+            /* Get the whole row based on the certain condition */
+                // const arrTableData = [];
+                // for(let i = 1; i <= rowsCount; i++) {
+                //     const obj = {}
+                //     for(let j = 1; j < colsCount; j++) {
+                //         const keysArr = ['placeholder', 'lastName', 'firstName', 'email', 'due', 'web']
+                //         const cellEl = await $(`//table[@id='table1']/tbody/tr[${i}]/td[${j}]`)
+                //         const due = await $(`//table[@id='table1']/tbody/tr[${i}]/td[4]`).getText();
+                //         if(due == "$100.00") {
+                //             const cellContent = await cellEl.getText()
+                //             obj[keysArr[j]] = cellContent 
+                //         }
+                //     }
+                //     if(obj['due']) {
+                //         arrTableData.push(obj)
+                //     }
+                // }
+                // console.log(`>> arrTableData: ${JSON.stringify(arrTableData, null, 2)}`)
+            /* Get single column */
+                // const arr = []
+                // for(let i = 1; i <= rowsCount; i++) {
+                //     const cellValue = await $(`//table[@id='table1']/tbody/tr[${i}]/td[3]`).getText()
+                //     arr.push(cellValue)
+                // }
+                // console.log(`>> arr: ${arr}`)
+            /* Get column value based on the certain condition */
+                // const arr = []
+                // for(let i = 1; i <= rowsCount; i++) {
+                //     const dueValue = await $(`//table[@id='table1']/tbody/tr[${i}]/td[4]`).getText()
+                //     if(+(dueValue.replace('$', '')) > 50) {
+                //         const webValue = await $(`//table[@id='table1']/tbody/tr[${i}]/td[5]`).getText()
+                //         const firstName = await $(`//table[@id='table1']/tbody/tr[${i}]/td[2]`).getText()
+                //         arr.push({"firstName": firstName, "web": webValue})
+                //     }
+                // }
+                // console.log(`>> arr: ${JSON.stringify(arr, null, 4)}`)
+
+            
 })
