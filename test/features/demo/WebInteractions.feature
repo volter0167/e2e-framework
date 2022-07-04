@@ -1,6 +1,6 @@
 Feature: WebInteractions
 
-    @demo
+    # @demo
     Scenario Outline: WebInetraction Demo feature
         Given A web page is opened
         When Perform WebInteractions

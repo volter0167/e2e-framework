@@ -1,9 +1,10 @@
 Feature: AdvancedWebInteractions
 
+    @demo
     Scenario Outline: Advanced WebInetraction Demo feature
         Given Login to the Inventory
-        Then Validate the page containing <NumberOfItems>
-        Then Verify all prices are positive value
+        # Then Validate the page containing <NumberOfItems>
+        # Then Verify all prices are positive value
 
         Examples:
             | TestID    | NumberOfItems |

@@ -3,7 +3,7 @@ import chai from 'chai'
 
 Given(/^Google page is opened$/, async function() {
     await browser.url('https://www.google.com');
-    await browser.pause(7000)
+    await browser.pause(1000)
 })
 
 When(/^Search by (.*)$/, async function(searchItem) {
@@ -20,6 +20,11 @@ Then(/^Click on the first link$/, async function() {
 
 Then(/^The url matches the (.*)$/, async function(expectedUrl) {
     console.log(`>> expectedURL: ${expectedUrl}`);
+
+    await browser.waitUntil(async () => {
+        return await browser.getUrl() === `${expectedUrl}`
+    }, {timeout: 20000, interval: 500, timeoutMsg: `Failed. Got the ${await browser.getUrl()}`})
+
     const url = await browser.getUrl()
     chai.expect(url).to.equal(expectedUrl)
 })
@@ -55,7 +60,7 @@ Then(/^Verify sentence matches (.*)$/, async function(expectedValue) {
 */
 
 Given(/^A web page is opened$/, async function() {
-    await browser.url('https://the-internet.herokuapp.com/tables')
+    await browser.url('https://www.amazon.com/')
     await browser.setTimeout({implicit: 5000, pageLoad: 2000})
     await browser.maximizeWindow()
 })
@@ -271,5 +276,39 @@ When(/^Perform WebInteractions$/, async function() {
                 // }
                 // console.log(`>> arr: ${JSON.stringify(arr, null, 4)}`)
 
+            /* Hover */
+                // const el = await $('div.figure')
+                // await el.moveTo()
+                // const profileLink = await $('a*=View profile')
+                // await profileLink.click()
+                // await browser.pause(2000)
+            /* Advanced scrolling */
+                /* Scroll a bit lower and higher*/
+                // await browser.execute(() => {
+                //     window.scrollBy(0, window.innerHeight)
+                // })
+                // await browser.pause(2000)
+
+                // await browser.execute(() => {
+                //     window.scrollBy(0, -window.innerHeight)
+                // })
+                // await browser.pause(2000)
+                // /* Scroll to the bottom and top of the page */
+                // await browser.execute(() => {
+                //     window.scrollTo(0, document.body.scrollHeight)
+                // })
+                // await browser.pause(2000)
+
+                // await browser.execute(() => {
+                //     window.scrollTo(0, document.body.scrollTop)   
+                // })
+                // await browser.pause(2000)
+
+                /* Scroll methods:
+                    -scrollBy(0, window.innerHeight)
+                    -scrollBy(0, -window.innerHeight)
+                    -scrollTo(0, document.body.scollHeight)
+                    -scrollTo(0, document.body.scrollTop)    
+                */
             
 })
