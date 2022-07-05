@@ -3,11 +3,12 @@ import chai from 'chai'
 
 Given(/^Google page is opened$/, async function() {
     await browser.url('https://www.google.com');
-    await browser.pause(1000)
+    await $('#L2AGLb').click()
 })
 
 When(/^Search by (.*)$/, async function(searchItem) {
     console.log(`>> searchItem: ${searchItem}`)
+    // await browser.debug()
     const searchBox = await $('input[name="q"]')
     await searchBox.setValue(searchItem)
     await browser.keys('Enter')

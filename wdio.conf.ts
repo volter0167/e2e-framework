@@ -1,4 +1,7 @@
 import type { Options } from '@wdio/types'
+import dotenv from 'dotenv'
+dotenv.config()
+const headless = process.env.HEADLESS
 
 export const config: Options.Testrunner = {
     //
@@ -84,6 +87,9 @@ export const config: Options.Testrunner = {
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
         maxInstances: 5,
+        "goog:chromeOptions": {
+            args: headless.toUpperCase().trim() === 'Y' ? ['--disable-web-security', '--headless', '--window-size=1920,1080', '--no-sandbox'] : []
+        },
         //
         browserName: 'chrome',
         acceptInsecureCerts: true,
@@ -124,7 +130,7 @@ export const config: Options.Testrunner = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: 'https://www.saucedemo.com',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
